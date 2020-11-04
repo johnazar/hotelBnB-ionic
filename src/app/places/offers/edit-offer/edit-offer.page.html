@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button
+      defaultHref="/places/tabs/offers"
+      ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit {{ isLoading ?'Loading..' : offer.title}}</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onUpdateOffer()" [disabled]="!form?.valid">
+        <ion-icon slot="icon-only" name="checkmark"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner  name="bubbles" color="primary" ></ion-spinner>
+  </div>
+  <form [formGroup]="form" *ngIf="!isLoading">
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Title</ion-label>
+            <ion-input
+              type="text"
+              autocomplate
+              autocorrect
+              formControlName="title"
+            ></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-item>
+            <ion-label position="floating">Short Description</ion-label>
+            <ion-textarea rows="3" formControlName="description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row
+        *ngIf="!form.get('description').valid && form.get('description').touched"
+      >
+        <ion-col size-sm="6" offset-sm="3">
+          <p>incorrect Desc</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

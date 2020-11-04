@@ -1,0 +1,13 @@
+{
+  "appId": "com.johnazar.bnb",
+  "appName": "bnb",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

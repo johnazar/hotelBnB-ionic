@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{isLogin? 'Login':'Signup'}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <ion-grid>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-list >
+            <ion-item>
+              <ion-label position="floating">E-mail</ion-label>
+              <!-- emailCtrl is local reference -->
+            <ion-input 
+            type="email"
+            ngModel
+            name="email"
+            required
+            email
+            
+            #emailCtrl="ngModel"
+            ></ion-input>
+
+            </ion-item>
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" 
+            lines="none">
+              <h6 >Not a valid Email</h6>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+            <ion-input 
+            type="password"
+            ngModel
+            name="password"
+            required
+            minlength="6"
+            #passCtrl="ngModel"
+            ></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!passCtrl.valid && passCtrl.touched" 
+            lines="none">
+              <h6 >Not a valid Password, 6 charac long</h6>
+            </ion-item>
+
+
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size-sm="6" offset-sm="3">
+          <ion-button 
+          type="button"
+          expand="block" 
+          fill="clear" 
+          (click)="onSwitchAuthMode()">
+            Switch to {{isLogin? 'Signup':'Login'}}
+          </ion-button>
+          <ion-button 
+          type="submit"
+          
+          expand="block" 
+          fill="solid" 
+          [disabled]="!loginForm.valid">
+          {{isLogin? 'Login':'Signup'}}
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</form>
+
+<!-- <div class="ion-text-center">
+  <ion-spinner color="primary"  *ngIf="isLoading"></ion-spinner>
+</div> -->
+
+</ion-content>
+
